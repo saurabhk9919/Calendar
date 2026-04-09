@@ -26,15 +26,20 @@ body {
 .calendar-scene::before {
   content: "";
   position: absolute;
-  top: 84px;
+  top: 76px;
   left: 50%;
-  width: 94%;
-  height: calc(100% - 60px);
+  width: 96%;
+  height: calc(100% - 52px);
   transform: translateX(-50%);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.2);
-  filter: blur(34px);
-  opacity: 0.28;
+  border-radius: 10px;
+  background: radial-gradient(
+    120% 90% at 50% 16%,
+    rgba(0, 0, 0, 0.34) 0%,
+    rgba(0, 0, 0, 0.24) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  filter: blur(24px);
+  opacity: 0.6;
   z-index: 0;
 }
 
@@ -137,7 +142,9 @@ body {
   background: white;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+  box-shadow:
+    0 26px 50px rgba(0, 0, 0, 0.24),
+    0 8px 16px rgba(0, 0, 0, 0.14);
 }
 
 .hero-section {
@@ -228,14 +235,25 @@ body {
 .notes-input {
   flex: 1;
   border: none;
-  padding: 8px 0;
+  padding: 0 10px 0 12px;
   font-family: inherit;
   font-size: 13px;
   resize: none;
+  overflow-y: auto;
   outline: none;
   border-bottom: 2px solid #e8e8e8;
   color: #666;
-  line-height: 1.6;
+  line-height: 28px;
+  border-radius: 2px;
+  background-color: #fff;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 27px,
+    #e7edf5 27px,
+    #e7edf5 28px
+  );
+  background-attachment: local;
 }
 
 .notes-input:focus {
@@ -245,7 +263,7 @@ body {
 
 .notes-input::placeholder {
   color: #d0d0d0;
-  text-align: center;
+  text-align: left;
 }
 
 .calendar-column {
