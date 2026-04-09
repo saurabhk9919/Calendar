@@ -19,7 +19,7 @@ export default function NotesPanel() {
       <h3>Notes</h3>
       <textarea
         className="notes-input"
-        placeholder="Write notes for this month..."
+        placeholder=""
         value={notes}
         onChange={handleChange}
       />

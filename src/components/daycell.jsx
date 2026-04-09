@@ -1,38 +1,25 @@
-import { format, isSameDay, isWithinInterval, getDay, isSameMonth } from "date-fns";
+import { format, getDay } from "date-fns";
 import clsx from "clsx";
 
-export default function DayCell({ day, range, selectDate, isSameMonthDay, isToday }) {
-    if (!isSameMonthDay) return;
-  const isStart = range.start && isSameDay(day, range.start);
-  const isEnd = range.end && isSameDay(day, range.end);
-
-  const isBetween =
-    range.start &&
-    range.end &&
-    isWithinInterval(day, { start: range.start, end: range.end });
+export default function DayCell({ day, isSameMonthDay, isToday, holidayName }) {
+  const dayLabel = format(day, "d");
 
   const dayOfWeek = getDay(day);
   const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-
-  const handleClick = () => {
-    if (isSameMonthDay) {
-      selectDate(day);
-    }
-  };
+  const isHoliday = Boolean(holidayName) && isSameMonthDay;
 
   return (
     <div
-      onClick={handleClick}
-        className={clsx("day", {
-          start: isStart,
-          end: isEnd,
-          between: isBetween,
-          "other-month": !isSameMonthDay,
-          weekend: isWeekend && isSameMonthDay,
-          today: isToday && isSameMonthDay,
-        })}
+      title={isHoliday ? holidayName : undefined}
+      className={clsx("day", {
+        "other-month": !isSameMonthDay,
+        weekend: isWeekend && isSameMonthDay,
+        today: isToday && isSameMonthDay,
+        holiday: isHoliday,
+      })}
     >
-      {format(day, "d")}
+      <span className="day-number">{dayLabel}</span>
+      {isHoliday && <span className="holiday-dot" aria-hidden="true"></span>}
     </div>
   );
 }
