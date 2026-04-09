@@ -35,7 +35,7 @@ const HOLIDAYS = {
   "12-25": "Christmas Day",
 };
 
-export default function Calendar() {
+export default function Calendar({ isDayMode }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [themeIndex, setThemeIndex] = useState(0);
   const days = useMemo(() => getCalendarDays(currentDate), [currentDate]);
@@ -57,7 +57,7 @@ export default function Calendar() {
     <div className="calendar-scene">
       <div className="spiral-binding" aria-hidden="true"></div>
       <div className="hanger-wire" aria-hidden="true"></div>
-      <div className={`calendar-wrapper theme-${activeTheme.id}`}>
+      <div className={`calendar-wrapper theme-${activeTheme.id} mode-${isDayMode ? "day" : "night"}`}>
         {/* Hero Image Section */}
         <div className="hero-section">
           <div className="hero-controls">
